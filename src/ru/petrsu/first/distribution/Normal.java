@@ -16,7 +16,7 @@ public class Normal extends Distribution {
 
     public Random random = Main.random;
 
-    protected Normal(List<Float> randomNumbers, float a, float b) {
+    public Normal(List<Float> randomNumbers, float a, float b) {
         super(randomNumbers);
         this.a = a;
         this.b = b;

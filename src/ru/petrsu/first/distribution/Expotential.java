@@ -11,7 +11,7 @@ public class Expotential extends Distribution {
 
     public float lamda;
 
-    protected Expotential(List<Float> randomNumbers, float lamda) {
+    public Expotential(List<Float> randomNumbers, float lamda) {
         super(randomNumbers);
         this.lamda = lamda;
 

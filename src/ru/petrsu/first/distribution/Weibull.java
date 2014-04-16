@@ -12,7 +12,7 @@ public class Weibull extends Distribution {
     private float a;
     private float b;
 
-    protected Weibull(List<Float> randomNumbers, float a, float b) {
+    public Weibull(List<Float> randomNumbers, float a, float b) {
         super(randomNumbers);
 
         this.a = a;

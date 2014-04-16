@@ -12,7 +12,7 @@ public class LogNorm extends Distribution {
 
     float a;
 
-    protected LogNorm(List<Float> randomNumbers, float a) {
+    public LogNorm(List<Float> randomNumbers, float a) {
         super(randomNumbers);
         this.a = a;
 
