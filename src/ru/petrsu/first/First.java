@@ -40,6 +40,9 @@ public class First {
                 FirstTask firstTask = new FirstTask(randomNumbers);
             } else if (choice.equals("3")) {
                 ThirdTask thirdTask = new ThirdTask(randomNumbers);
+            } else if (choice.equals("4")) {
+                FourthTask fourthTask = new FourthTask();
+                random.nextGaussian();
             }
         }
     }

@@ -1,7 +1,5 @@
 package ru.petrsu;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 import java.util.List;
 
 /**
@@ -15,8 +13,8 @@ public class Util {
     public static float Mean(List<Float> numbers) {
         float sum = .0f;
 
-        for (int i = 0; i < numbers.size(); i++) {
-            sum += numbers.get(i);
+        for (Float number : numbers) {
+            sum += number;
         }
 
         return sum / numbers.size();
@@ -32,8 +30,8 @@ public class Util {
 
         float sum = .0f;
 
-        for (int i = 0; i < numbers.size(); i++) {
-            sum += Math.pow(numbers.get(i) - mean, 2);
+        for (Float number : numbers) {
+            sum += Math.pow(number - mean, 2);
         }
 
         return sum / numbers.size();
@@ -61,5 +59,18 @@ public class Util {
         }
 
         return sum;
+    }
+
+    public static double nextGaussian() {
+
+        double x, y, r;
+
+        do {
+            x = 2.0 * Math.random() - 1.0;
+            y = 2.0 * Math.random() - 1.0;
+            r = x*x + y*y;
+        } while (r > 1 || r == 0);
+
+        return x * Math.sqrt(-2.0 * Math.log(r) / r);
     }
 }

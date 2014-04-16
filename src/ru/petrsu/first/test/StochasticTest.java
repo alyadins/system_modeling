@@ -1,7 +1,5 @@
 package ru.petrsu.first.test;
 
-import ru.petrsu.first.test.Test;
-
 import java.util.List;
 
 /**
