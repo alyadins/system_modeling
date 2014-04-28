@@ -72,7 +72,7 @@ public class Second {
             requestGenerator.update(time);
             server.update(time);
 
-            if (requestGenerator.hasNext()) {
+            if (requestGenerator.hasNext() && requestGenerator.next() != null) {
                 server.addRequest(requestGenerator.next());
             }
         }

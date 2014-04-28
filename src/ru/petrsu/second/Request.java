@@ -7,7 +7,7 @@ public class Request {
 
     public double arrivalTime;
     public double processingTime;
-    public double currentProcessingTime;
+    public double currentProcessingTime = 0;
 
     public Request(double arrivalTime, double processingTime) {
         this.arrivalTime = arrivalTime;
@@ -23,7 +23,5 @@ public class Request {
         currentProcessingTime += time;
     }
 
-    public double proceedTime(double currentTime) {
-        return currentTime - arrivalTime;
-    }
+
 }
