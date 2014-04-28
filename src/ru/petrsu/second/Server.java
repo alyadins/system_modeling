@@ -1,6 +1,5 @@
 package ru.petrsu.second;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,20 +24,14 @@ public class Server {
     public double quantumTime = 0;
 
     private Request currentRequest;
-
-    //
-    private double mWorkTime;
-    private double mLoseTime;
-    private double mLoseRequests;
-    private List<Double> mProcessTimes;
-
     private List<Request> requestQueue;
-
-    private int mProcessedRequests;
-
 
     private double mArrivalTimes;
     private double mPreviousArrivalTime = 0;
+
+    //tasks(stats)
+    private double arrivalIntervalCounter;
+    private double previousArrivalTime = 0;
 
     public Server(double quantumSize, double lifeTime) {
         this.quantumSize = quantumSize;
@@ -49,6 +42,8 @@ public class Server {
     public void addRequest(Request request) {
 
         requestQueue.add(request);
+        arrivalIntervalCounter += request.arrivalTime - previousArrivalTime;
+        previousArrivalTime = request.arrivalTime;
 
         mArrivalTimes = request.arrivalTime - mPreviousArrivalTime;
 
@@ -64,7 +59,6 @@ public class Server {
 
     private void process(double delta) {
         quantumTime += delta;
-
 
         if (currentRequest == null) {
             if (!requestQueue.isEmpty()) {
@@ -98,24 +92,19 @@ public class Server {
         }
     }
 
-    public double averageTime() {
-        double sum = 0;
-
-        for (Iterator<Double> iterator = mProcessTimes.iterator(); iterator.hasNext(); ) {
-            Double next = iterator.next();
-            sum += next.doubleValue();
-        }
-
-        return sum;
+    public double averageProcessTime() {
+        return workTime / requestCounter;
     }
 
-    public double averageArrivalTime() {
-
-        return mArrivalTimes / requestCounter;
+    public double averageArrivalInterval(){
+        return arrivalIntervalCounter / requestCounter;
     }
 
-    public int processedRequest() {
-        return mProcessedRequests;
+    public double averageLoad() {
+        return workTime / (workTime + downTime);
     }
 
+    public double failureProbability() {
+        return notCompleteRequests / (double) requestCounter;
+    }
 }

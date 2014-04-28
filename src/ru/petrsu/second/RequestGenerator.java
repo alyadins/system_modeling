@@ -44,9 +44,9 @@ public class RequestGenerator {
 
         Request request = nextRequest;
 
-        nextRequest = new Request(time += nextRandom(), nextRandom());
+        nextRequest = new Request(time + nextRandom(), nextRandom());
 
-        return hasNext() ? null : request;
+        return request;
     }
 
     public boolean hasNext() {
@@ -55,9 +55,8 @@ public class RequestGenerator {
 
     public void update(double time) {
         if (nextRequest == null) {
-            nextRequest = new Request(time += nextRandom(), nextRandom());
+            nextRequest = new Request(time + nextRandom(), nextRandom());
         }
-
         this.time = time;
     }
 

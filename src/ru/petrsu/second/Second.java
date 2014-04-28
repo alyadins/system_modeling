@@ -66,7 +66,7 @@ public class Second {
     }
 
     private void start() {
-        while (server.requestCounter < requestCount) {
+        while (server.requestCounter <= requestCount) {
             time += TIME_ITERATION;
 
             requestGenerator.update(time);
@@ -77,5 +77,9 @@ public class Second {
             }
         }
 
+        System.out.println("Среднее время обслуживания = " + server.averageProcessTime());
+        System.out.println("Средний интервал между запросами = " + server.averageArrivalInterval());
+        System.out.println("Средняя загрузка сервера = " + server.averageLoad());
+        System.out.println("Вероятность отказа = " + server.failureProbability());
     }
 }
