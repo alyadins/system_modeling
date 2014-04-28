@@ -1,6 +1,7 @@
 package ru.petrsu;
 
 import ru.petrsu.first.First;
+import ru.petrsu.second.Second;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,8 +27,11 @@ public class Main {
 
             if (choice.equals("1")) {
                 First first = new First();
-            } else if (!choice.equals("q"))
-                System.out.println("Неверный номер задания");
+            } else if (choice.equals("2")) {
+                Second second = new Second();
+            } else if (!choice.equals("q")) {
+                    System.out.println("Неверный номер задания");
+            }
         }
 
         System.out.println("Удачи!");

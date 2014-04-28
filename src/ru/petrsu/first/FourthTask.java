@@ -1,6 +1,5 @@
 package ru.petrsu.first;
 
-import ru.petrsu.Main;
 import ru.petrsu.Util;
 
 /**
@@ -15,7 +14,7 @@ public class FourthTask {
     public FourthTask() {
         for (int i = 0; i < 100; i++) {
             our[i] = Util.nextGaussian();
-            norm[i] = Main.random.nextGaussian();
+            System.out.println(our[i]);
         }
 
     }

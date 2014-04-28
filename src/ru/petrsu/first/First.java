@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class First {
 
-    public static final int N = 100;
+    public static final int N = 10000;
 
     public BufferedReader reader = Main.Reader;
     public Random random = Main.random;
