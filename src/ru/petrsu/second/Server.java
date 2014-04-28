@@ -73,7 +73,7 @@ public class Server {
 
         workTime += delta;
 
-        if (currentRequest.currentProcessingTime > lifeTime) {
+        if (time - currentRequest.arrivalTime > lifeTime) {
             notCompleteRequests++;
             currentRequest = null;
             return;
