@@ -24,7 +24,7 @@ public class FirstTask {
         String choice = "";
         while (!choice.equals("back")) {
             printMenu();
-
+            randomNumbers.clear();
             choice = reader.readLine();
 
             if (choice.equals("1")) {

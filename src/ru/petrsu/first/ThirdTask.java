@@ -30,6 +30,13 @@ public class ThirdTask {
             printMenu();
             choice = reader.readLine();
 
+            randomNumbers.clear();
+
+            for (int i = 0; i < First.N; i++) {
+                randomNumbers.add(Main.random.nextFloat());
+             //   System.out.println(randomNumbers.get(randomNumbers.size() - 1));
+            }
+
             if (choice.equals("1")) {
 
                 UniformTest uniformTest = new UniformTest(randomNumbers);
@@ -46,6 +53,7 @@ public class ThirdTask {
                 IndependenceTest independenceTest = new IndependenceTest(randomNumbers);
 
                 System.out.println("Тест на независимость " + independenceTest.result());
+                independenceTest.printCriterion();
             }
         }
     }

@@ -1,6 +1,10 @@
 package ru.petrsu.second;
 
 import ru.petrsu.Main;
+import ru.petrsu.second.distribution.Distribution;
+import ru.petrsu.second.distribution.Expotential;
+import ru.petrsu.second.distribution.Pareto;
+import ru.petrsu.second.distribution.Uniform;
 
 import java.io.IOException;
 
@@ -30,35 +34,10 @@ public class Second {
         System.out.println("Введите время жизни запроса");
         lifeTime = Double.parseDouble(Main.Reader.readLine());
 
-        System.out.println("Выберете распределение\n" +
-                "1)Экспотенциальное\n" +
-                "2)Парето\n" +
-                "3)Равномерное");
-        switch (Integer.parseInt(Main.Reader.readLine())) {
-            case 1:
-                System.out.println("Введите лямда");
-                System.out.print("лямда = ");
-                double lambda = Double.parseDouble(Main.Reader.readLine());
-                requestGenerator = new RequestGenerator(RequestGenerator.Distribution.EXPOTENTIAL, lambda);
-                break;
-            case 2:
-                System.out.println("Введите альфа");
-                System.out.print("альфа = ");
-                double alpha = Double.parseDouble(Main.Reader.readLine());
-                requestGenerator = new RequestGenerator(RequestGenerator.Distribution.PARETO, alpha);
-                break;
-            case 3:
-                System.out.println("Введите а и b");
-                System.out.print("а = ");
-                double a = Double.parseDouble(Main.Reader.readLine());
-                System.out.print("b = ");
-                double b = Double.parseDouble(Main.Reader.readLine());
-                requestGenerator = new RequestGenerator(RequestGenerator.Distribution.UNIFORM, a, b);
-                break;
-            default:
-                System.out.println("Не найдено. Выполняется равномерное на 0 и 1");
-                requestGenerator = new RequestGenerator(RequestGenerator.Distribution.UNIFORM, 0.0, 1.0);
-        }
+        Distribution arrival = askDistribution("времени запроса");
+        Distribution process = askDistribution("времени обработки");
+
+        requestGenerator = new RequestGenerator(arrival, process);
 
         server = new Server(quantumSize, lifeTime);
 
@@ -81,5 +60,50 @@ public class Second {
         System.out.println("Средний интервал между запросами = " + server.averageArrivalInterval());
         System.out.println("Средняя загрузка сервера = " + server.averageLoad());
         System.out.println("Вероятность отказа = " + server.failureProbability());
+    }
+
+
+    private Distribution askDistribution(String forText) {
+        System.out.println("Выюерете распределение для " + forText);
+
+        System.out.print("1) Экспотенциальное\n" +
+                "2) Парето\n" +
+                "3) Равномерное\n");
+
+        int choice = 0;
+        try {
+            choice = Integer.parseInt(Main.Reader.readLine());
+        } catch (IOException e) {
+            System.out.println("Введите 1 2 или 3");
+        }
+
+        Distribution distribution = new Uniform(0, 1);
+        try {
+            switch (choice) {
+                case 1:
+                    System.out.print("Введите лямда\nlambda = ");
+                    double lamda = Double.parseDouble(Main.Reader.readLine());
+                    distribution = new Expotential(lamda);
+                    break;
+                case 2:
+                    System.out.print("Введите альфа\nalpha = ");
+                    double alpha = Double.parseDouble(Main.Reader.readLine());
+                    distribution = new Pareto(alpha);
+                    break;
+                case 3:
+                    System.out.print("Введите а и b\na = ");
+                    double a = Double.parseDouble(Main.Reader.readLine());
+                    System.out.print("b = ");
+                    double b = Double.parseDouble(Main.Reader.readLine());
+                    distribution = new Uniform(a, b);
+                    break;
+                default:
+                    throw new Exception();
+            }
+        } catch (Exception e)  {
+            System.out.println("Введите нужное значение");
+        }
+
+        return distribution;
     }
 }

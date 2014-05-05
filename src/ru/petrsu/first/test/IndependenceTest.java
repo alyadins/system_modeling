@@ -1,7 +1,6 @@
 package ru.petrsu.first.test;
 
 import ru.petrsu.Util;
-import ru.petrsu.first.test.Test;
 
 import java.util.List;
 
@@ -42,5 +41,10 @@ public class IndependenceTest extends Test {
 
         if (zn > d)
             pass = true;
+    }
+
+    public void printCriterion() {
+        System.out.print("Табличный = " + d + "\n" +
+                "Получившийся = " + zn + "\n");
     }
 }

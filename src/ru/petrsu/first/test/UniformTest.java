@@ -1,7 +1,5 @@
 package ru.petrsu.first.test;
 
-import ru.petrsu.first.test.Test;
-
 import java.util.List;
 
 /**
@@ -47,11 +45,19 @@ public class UniformTest extends Test {
             }
         }
 
-        chiSquare = 0;
-        for (int i = 0; i < N; i++) {
-            chiSquare += Math.pow((intervalValues[i] - N), 2) / N;
+        System.out.println(randomNumbers.size());
+        float sum = 0.0f;
+
+        for (int i = 0; i < intervalValues.length; i++) {
+            sum += intervalValues[i];
         }
 
+        chiSquare = 0;
+        for (int i = 0; i < N; i++) {
+            chiSquare += Math.pow((intervalValues[i] - 1000), 2) / 1000;
+        }
+
+        System.out.println(chiSquare);
         if (chiSquare < CHI_SQUARE_TABLE_10) {
             pass = true;
         }

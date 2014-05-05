@@ -26,7 +26,6 @@ public class Server {
     private Request currentRequest;
     private List<Request> requestQueue;
 
-    private double mArrivalTimes;
     private double mPreviousArrivalTime = 0;
 
     //tasks(stats)
@@ -44,8 +43,6 @@ public class Server {
         requestQueue.add(request);
         arrivalIntervalCounter += request.arrivalTime - previousArrivalTime;
         previousArrivalTime = request.arrivalTime;
-
-        mArrivalTimes = request.arrivalTime - mPreviousArrivalTime;
 
         requestCounter++;
     }

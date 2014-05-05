@@ -15,14 +15,15 @@ public class StochasticTest extends Test {
 
     private int[] intervalsValues;
 
-    private int n1;
-    private int n2;
+    private int count1;
+    private int count2;
 
     private float criterion;
 
     public StochasticTest(List<Float> randomNumbers) {
         this.randomNumbers = randomNumbers;
         p = (getMaxValue(randomNumbers) - getMinValue(randomNumbers)) / 2;
+
 
         intervalsValues = new int[randomNumbers.size()];
 
@@ -34,10 +35,10 @@ public class StochasticTest extends Test {
             float randomNumber = randomNumbers.get(i);
             if (randomNumber > p) {
                 intervalsValues[i] = 1;
-                n2++;
+                count1++;
             } else {
                 intervalsValues[i] = 0;
-                n1++;
+                count2++;
             }
         }
 
@@ -49,6 +50,8 @@ public class StochasticTest extends Test {
             }
         }
 
+        float n1 = (float) count1;
+        float n2 = (float) count2;
 
         float top = n - (2 * n1 * n2) / (n1 + n2) - 1;
         float underTop = 2 * n1 * n2 *(2 * n1 * n2 - (n1 + n2));

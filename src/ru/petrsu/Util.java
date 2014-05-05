@@ -72,5 +72,6 @@ public class Util {
         } while (r > 1 || r == 0);
 
         return x * Math.sqrt(-2.0 * Math.log(r) / r);
+
     }
 }
